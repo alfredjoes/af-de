@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python-local-package
+name: check-local-package
 
 on:
   workflow_dispatch:
@@ -37,20 +37,25 @@ jobs:
     - name: upgrade pip
       run: |
         python -m pip install --upgrade pip
-    - name: local-package-or-online
+    - name: local-package
       run: |
         localPath="./save-pack-dir"
-        # if [ -d "${localPath}" ]; then python -m pip install  --no-index --find-links=./save-pack-dir -r requirements.txt; fi
-        # http://c.biancheng.net/view/1262.html
-        if [ -d "${localPath}" ]; then
-            # 本地安装包
-            python -m pip install  --no-index --find-links=${localPath} -r requirements.txt
-        else
-            # 在线安装包
-            pip install -r requirements.txt
-            # 把 requirements.txt 的包下载导出至 ./save-pack-dir 目录中
-            python -m pip download --destination-directory ./save-pack-dir -r requirements.txt
-        fi
+        # 本地安装包
+        python -m pip install  --no-index --find-links=${localPath} -r requirements.txt
+#     - name: local-package-or-online
+#       run: |
+#         localPath="./save-pack-dir"
+#         # if [ -d "${localPath}" ]; then python -m pip install  --no-index --find-links=./save-pack-dir -r requirements.txt; fi
+#         # http://c.biancheng.net/view/1262.html
+#         if [ -d "${localPath}" ]; then
+#             # 本地安装包
+#             python -m pip install  --no-index --find-links=${localPath} -r requirements.txt
+#         else
+#             # 在线安装包
+#             pip install -r requirements.txt
+#             # 把 requirements.txt 的包下载导出至 ./save-pack-dir 目录中
+#             python -m pip download --destination-directory ./save-pack-dir -r requirements.txt
+#         fi
 #     - name: Install dependencies
 #       run: |
 #         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
@@ -67,36 +72,40 @@ jobs:
 #         #find / -name 'pip.conf' > pip_conf.log
 #         grep -r 'pip.conf' /*  >  pip_conf.log
 #         cat pip_conf.log
-    - name: site
-      run: python -m site 
+#     - name: site
+#       run: python -m site 
 #     - name: site-help
 #       run: python -m site -help
-    - name: bash_profile
-      run: |
-        ls -la ~/.bash_profile
-        cat ~/.bash_profile
+#     - name: bash_profile
+#       run: |
+#         ls -la ~/.bash_profile
+#         cat ~/.bash_profile
 #     - name: pip.conf
 #       run: ls -la ~/.pip/pip.conf
-    - name: exec-py
-      run: python -c"import env"
-    - name: info-py
-      run: pip show django-env
-    - name: pwd
-      run: |
-        current_pwd=`pwd`
-        echo "pwd:${current_pwd}"
+#     - name: exec-py
+#       run: python -c"import env"
+#     - name: info-py
+#       run: pip show django-env
+#     - name: pwd
+#       run: |
+#         current_pwd=`pwd`
+#         echo "pwd:${current_pwd}"
 #     - name: list-package-path
 #       run: |        
 #         ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
-    - name: list-site.py
-      run: |        
-        site_pyth=`python -m site -help | grep 'site.py' | awk '{print $1}' `
-        echo "site_pyth: ${site_pyth}"
-        cat ${site_pyth}
-    - name: list-local-package
-      run: |        
-        localPath="./save-pack-dir"
-        ls -la ${localPath}
+#     - name: list-site.py
+#       run: |        
+#         site_pyth=`python -m site -help | grep 'site.py' | awk '{print $1}' `
+#         echo "site_pyth: ${site_pyth}"
+#         cat ${site_pyth}
+#     - name: list-local-package
+#       run: |        
+#         localPath="./save-pack-dir"
+#         ls -la ${localPath}
+    - name: check-local-package-pandas
+      run: |
+        python -c"import pandas"
+        python -m pip show pandas
 
         
 
