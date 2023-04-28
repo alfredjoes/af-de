@@ -24,16 +24,16 @@ jobs:
     - name: list-package-path
       run: |        
         ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
-#     - name: set-package-path
-#       run: |
-#         current_pwd=`pwd`
-#         mkdir "${current_pwd}/local-package"
-#         chmod -R 0777 "${current_pwd}/local-package"
-#         # python -m pip config set global.target "${current_pwd}/local-package"
-#         # ls -la ~/.pip
-#         echo "export PYTHONPATH=$PYTHONPATH:${current_pwd}/local-package" >> ~/.bash_profile
-#         echo "export PIP_TARGET=$PIP_TARGET:${current_pwd}/local-package" >> ~/.bash_profile
-#         source ~/.bash_profile
+    - name: set-package-path
+      run: |
+        current_pwd=`pwd`
+        mkdir "${current_pwd}/local-package"
+        chmod -R 0777 "${current_pwd}/local-package"
+        # python -m pip config set global.target "${current_pwd}/local-package"
+        # ls -la ~/.pip
+        echo "export PYTHONPATH=$PYTHONPATH:${current_pwd}/local-package" >> ~/.bash_profile
+        echo "export PIP_TARGET=$PIP_TARGET:${current_pwd}/local-package" >> ~/.bash_profile
+        source ~/.bash_profile
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -64,7 +64,10 @@ jobs:
         ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
     - name: list-site.py
       run: |        
-        python -m site -help | grep 'site.py' | awk '{print $1}'
+        site_pyth=`python -m site -help | grep 'site.py' | awk '{print $1}' `
+        echo "site_pyth: ${site_pyth}"
+        cat ${site_pyth}
+        
 
 
 
