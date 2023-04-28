@@ -34,8 +34,8 @@ jobs:
 #       run: python -m site -help
     - name: bash_profile
       run: ls -la ~/.bash_profile
-    - name: pip.conf
-      run: ls -la ~/.pip/pip.conf
+#     - name: pip.conf
+#       run: ls -la ~/.pip/pip.conf
     - name: exec-py
       run: python -c"import env"
 
