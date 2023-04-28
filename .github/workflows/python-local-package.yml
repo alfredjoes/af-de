@@ -38,6 +38,12 @@ jobs:
 #       run: ls -la ~/.pip/pip.conf
     - name: exec-py
       run: python -c"import env"
+    - name: info-py
+      run: pip show django-env
+    - name: pwd
+      run: |
+        current_pwd=`pwd`
+        echo "pwd:${current_pwd}"
 
 
 
