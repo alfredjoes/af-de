@@ -1,0 +1,25 @@
+Django==4.2
+django-admin==2.0.2
+xhs==0.1.1
+opencv-python==4.7.0.72
+# pip_search=0.0.12
+# flask-migrate==4.0.4
+# flask-migrate==2.7.0
+# Flask-Script==2.0.6
+# Flask-SQLAlchemy==3.0.3
+# flask_mail==0.9.1
+# python-dotenv==1.0.0
+pymysql==1.0.3
+uwsgi==2.0.21
+
+mysql-connector==2.2.9
+# mysqlclient==
+# django-env==0.2.1
+django-environ==0.10.0
+
+utils==1.0.1
+
+# python3 -m pip uninstall Django
+# python3 -m pip install -r requirements.txt
+# cd /home/wwwroot/flask_xhs
+
