@@ -27,7 +27,7 @@ jobs:
         mkdir "${current_pwd}/local-package"
         chmod -R 0777 "${current_pwd}/local-package"
         # python -m pip config set global.target "${current_pwd}/local-package"
-        ls -la ~/.pip
+        # ls -la ~/.pip
         echo "export PYTHONPATH=$PYTHONPATH:${current_pwd}/local-package" >> ~/.bash_profile
         echo "export PIP_TARGET=$PIP_TARGET:${current_pwd}/local-package" >> ~/.bash_profile
         source ~/.bash_profile
