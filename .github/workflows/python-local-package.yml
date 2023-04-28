@@ -21,6 +21,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: set-package-path
+      run: |
+        current_pwd=`pwd`
+        python -m pip config set global.target ${current_pwd}
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
