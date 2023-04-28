@@ -62,6 +62,9 @@ jobs:
     - name: list-package-path
       run: |        
         ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
+    - name: list-site.py
+      run: |        
+        python -m site -help | grep 'site.py' | awk '{print $1}'
 
 
 
