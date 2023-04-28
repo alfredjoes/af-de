@@ -30,8 +30,8 @@ jobs:
         python --version
     - name: site
       run: python -m site 
-    - name: site-help
-      run: python -m site -help
+#     - name: site-help
+#       run: python -m site -help
     - name: bash_profile
       run: ls -la ~/.bash_profile
     - name: pip.conf
