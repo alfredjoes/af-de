@@ -27,6 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         localPath="./save-pack-dir"
+        rm -rf ${localPath}
         # 在线安装包
         pip install -r requirements.txt
         # 把 requirements.txt 的包下载导出至 ./save-pack-dir 目录中
