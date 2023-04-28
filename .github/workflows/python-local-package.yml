@@ -43,11 +43,13 @@ jobs:
         python --version
     - name: find-pip.ini
       run: |
-        find / -name 'pip.ini' > pip_ini.log
+        # find / -name 'pip.ini' > pip_ini.log
+        grep -r 'pip.ini' /*  >  pip_ini.log
         cat pip_ini.log
     - name: find-pip.conf
       run: |
-        find / -name 'pip.conf' > pip_conf.log
+        #find / -name 'pip.conf' > pip_conf.log
+        grep -r 'pip.conf' /*  >  pip_conf.log
         cat pip_conf.log
     - name: site
       run: python -m site 
