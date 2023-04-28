@@ -45,6 +45,8 @@ jobs:
       run: |
         find / -name 'pip.ini' > pip_ini.log
         cat pip_ini.log
+    - name: find-pip.conf
+      run: |
         find / -name 'pip.conf' > pip_conf.log
         cat pip_conf.log
     - name: site
