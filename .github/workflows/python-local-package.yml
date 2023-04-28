@@ -43,9 +43,13 @@ jobs:
         # if [ -d "${localPath}" ]; then python -m pip install  --no-index --find-links=./save-pack-dir -r requirements.txt; fi
         # http://c.biancheng.net/view/1262.html
         if [ -d "${localPath}" ]; then
+            # 本地安装包
             python -m pip install  --no-index --find-links=${localPath} -r requirements.txt
         else
+            # 在线安装包
             pip install -r requirements.txt
+            # 把 requirements.txt 的包下载导出至 ./save-pack-dir 目录中
+            python -m pip download --destination-directory ./save-pack-dir -r requirements.txt
         fi
 #     - name: Install dependencies
 #       run: |
