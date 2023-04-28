@@ -34,9 +34,9 @@ jobs:
 #         echo "export PYTHONPATH=$PYTHONPATH:${current_pwd}/local-package" >> ~/.bash_profile
 #         echo "export PIP_TARGET=$PIP_TARGET:${current_pwd}/local-package" >> ~/.bash_profile
 #         source ~/.bash_profile
-    - name: upgrade pip
-      run: |
-        python -m pip install --upgrade pip
+#     - name: upgrade pip
+#       run: |
+#         python -m pip install --upgrade pip
     - name: local-package
       run: |
         localPath="./save-pack-dir"
@@ -104,8 +104,11 @@ jobs:
 #         ls -la ${localPath}
     - name: check-local-package-pandas
       run: |
-        python -c"import pandas"
-        python -m pip show pandas
+        # python -c"import pandas"
+        # python -m pip show pandas
+        python ./check-packages.py
+
+
 
         
 
