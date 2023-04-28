@@ -21,36 +21,38 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: list-package-path
-      run: |        
-        ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
-    - name: set-package-path
-      run: |
-        current_pwd=`pwd`
-        mkdir "${current_pwd}/local-package"
-        chmod -R 0777 "${current_pwd}/local-package"
-        # python -m pip config set global.target "${current_pwd}/local-package"
-        # ls -la ~/.pip
-        echo "export PYTHONPATH=$PYTHONPATH:${current_pwd}/local-package" >> ~/.bash_profile
-        echo "export PIP_TARGET=$PIP_TARGET:${current_pwd}/local-package" >> ~/.bash_profile
-        source ~/.bash_profile
-    - name: Install dependencies
+#     - name: list-package-path
+#       run: |        
+#         ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
+#     - name: set-package-path
+#       run: |
+#         current_pwd=`pwd`
+#         mkdir "${current_pwd}/local-package"
+#         chmod -R 0777 "${current_pwd}/local-package"
+#         # python -m pip config set global.target "${current_pwd}/local-package"
+#         # ls -la ~/.pip
+#         echo "export PYTHONPATH=$PYTHONPATH:${current_pwd}/local-package" >> ~/.bash_profile
+#         echo "export PIP_TARGET=$PIP_TARGET:${current_pwd}/local-package" >> ~/.bash_profile
+#         source ~/.bash_profile
+    - name: upgrade pip
       run: |
         python -m pip install --upgrade pip
+    - name: Install dependencies
+      run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
         python --version
-    - name: find-pip.ini
-      run: |
-        # find / -name 'pip.ini' > pip_ini.log
-        grep -r 'pip.ini' /*  >  pip_ini.log
-        cat pip_ini.log
-    - name: find-pip.conf
-      run: |
-        #find / -name 'pip.conf' > pip_conf.log
-        grep -r 'pip.conf' /*  >  pip_conf.log
-        cat pip_conf.log
+#     - name: find-pip.ini
+#       run: |
+#         # find / -name 'pip.ini' > pip_ini.log
+#         grep -r 'pip.ini' /*  >  pip_ini.log
+#         cat pip_ini.log
+#     - name: find-pip.conf
+#       run: |
+#         #find / -name 'pip.conf' > pip_conf.log
+#         grep -r 'pip.conf' /*  >  pip_conf.log
+#         cat pip_conf.log
     - name: site
       run: python -m site 
 #     - name: site-help
@@ -69,9 +71,9 @@ jobs:
       run: |
         current_pwd=`pwd`
         echo "pwd:${current_pwd}"
-    - name: list-package-path
-      run: |        
-        ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
+#     - name: list-package-path
+#       run: |        
+#         ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
     - name: list-site.py
       run: |        
         site_pyth=`python -m site -help | grep 'site.py' | awk '{print $1}' `
