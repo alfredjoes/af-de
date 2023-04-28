@@ -21,6 +21,9 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: list-package-path
+      run: |        
+        ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
 #     - name: set-package-path
 #       run: |
 #         current_pwd=`pwd`
@@ -56,7 +59,9 @@ jobs:
       run: |
         current_pwd=`pwd`
         echo "pwd:${current_pwd}"
-
+    - name: list-package-path
+      run: |        
+        ls -la /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages
 
 
 
