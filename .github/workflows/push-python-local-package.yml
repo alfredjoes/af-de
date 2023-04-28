@@ -30,6 +30,8 @@ jobs:
         rm -rf ${localPath}
         # 在线安装包
         pip install -r requirements.txt
+    - name: download-local-package
+      run: |
         # 把 requirements.txt 的包下载导出至 ./save-pack-dir 目录中
         # python -m pip download --destination-directory ${localPath} -r requirements.txt
         python -m pip install wheel
